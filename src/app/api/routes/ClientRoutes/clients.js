@@ -1,10 +1,10 @@
 // routes/usuarios.js
 const express = require('express');
-const router = express.Router();
-const db = require('../db'); // importa a conexão com o banco
+const ClientRouter = express.Router();
+const db = require('../../../db'); // importa a conexão com o banco
 
 // Rota GET para listar usuários
-router.get('/', (req, res) => {
+ClientRouter.get('/', (_req, res) => {
   db.query('SELECT * FROM clientes', (err, results) => {
     if (err) {
       console.error('Erro ao buscar clientes:', err);
@@ -15,7 +15,7 @@ router.get('/', (req, res) => {
   });
 });
 
-router.get('/:id', (req, res) => {
+ClientRouter.get('/:id', (req, res) => {
     const { id } = req.params;
     db.query('SELECT * FROM clientes WHERE id_cliente = ?', [id], (err, results) => {
         if (err) {
@@ -31,7 +31,7 @@ router.get('/:id', (req, res) => {
     })
 })
 
-router.post('/', (req, res) => {
+ClientRouter.post('/', (req, res) => {
     const {
         nome,
         idade,
@@ -51,7 +51,7 @@ router.post('/', (req, res) => {
     })
 })
 
-router.put('/:id', (req, res) => {
+ClientRouter.put('/:id', (req, res) => {
     const { id } = req.params;
     const {
         nome,
@@ -73,7 +73,7 @@ router.put('/:id', (req, res) => {
     
 })
 
-router.delete('/:id', (req, res) => {
+ClientRouter.delete('/:id', (req, res) => {
     const { id } = req.params;
     db.query('DELETE FROM clientes WHERE id_cliente = ?', [id], (err, responses) => {
         if(err) {
@@ -87,4 +87,4 @@ router.delete('/:id', (req, res) => {
 
 // Você pode adicionar mais rotas aqui (POST, PUT, DELETE)
 
-module.exports = router;
+export default ClientRouter;
