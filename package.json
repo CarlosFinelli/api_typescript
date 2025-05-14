@@ -2,8 +2,9 @@
   "name": "aula_djalma",
   "version": "1.0.0",
   "main": "app.ts",
+  "type": "module",
   "scripts": {
-    "dev": "nodemon ./src/app/api/app.js",
+    "dev": "ts-node --transpile-only src/app/api/app.ts",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "keywords": [],
@@ -16,5 +17,17 @@
     "express": "^5.1.0",
     "mysql2": "^3.14.1",
     "nodemon": "^3.1.10"
+  },
+  "devDependencies": {
+    "@types/bcrypt": "^5.0.2",
+    "@types/cors": "^2.8.18",
+    "@types/express": "^5.0.1",
+    "@types/node": "^22.15.18",
+    "ts-node": "^10.9.2",
+    "ts-node-dev": "^2.0.0",
+    "typescript": "^5.8.3"
+  },
+  "compilerOptions": {
+    "esModuleInterop": true
   }
 }

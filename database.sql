@@ -2,7 +2,7 @@ CREATE DATABASE pessoas;
 USE pessoas;
 
 CREATE TABLE users(
-	id_user INT PRIMARY KEY AUTO_INCREMENT,
+	user_id INT PRIMARY KEY AUTO_INCREMENT,
     name TEXT,
     email TEXT,
     password TEXT,
@@ -15,7 +15,9 @@ CREATE TABLE task(
 	id_task INT PRIMARY KEY AUTO_INCREMENT,
     name TEXT,
     finished BOOLEAN DEFAULT false,
+    user_id INT,
     created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
     updated_at TIMESTAMP,
-    deleted_at TIMESTAMP
+    deleted_at TIMESTAMP,
+    FOREIGN KEY (user_id) REFERENCES users(user_id)
 );

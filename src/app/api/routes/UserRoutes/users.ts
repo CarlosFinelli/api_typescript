@@ -1,12 +1,12 @@
-const express = require('express');
+import express, { Request, Response } from 'express';
 const UsersRouter = express.Router();
-const db = require('../db');
-import { UserEntity } from '../../entities/users/UserEntity.ts';
-import { createHashPassword } from '../../utils/bcrypt.ts';
+import db from '../../db';
+import { UserEntity } from '../../entities/users/UserEntity';
+import { createHashPassword } from '../../utils/bcrypt';
 
 const tableName = 'users';
 
-UsersRouter.post('/', async (req, res) => {
+UsersRouter.post('/', async (req: Request, res: Response) => {
     try {
         const user: Partial<UserEntity> = req.body;
         const password = await createHashPassword(user.password!);
@@ -23,7 +23,7 @@ UsersRouter.post('/', async (req, res) => {
     }
 })
 
-UsersRouter.get('/', (_req, res) => {
+UsersRouter.get('/', (_req: Request, res: Response) => {
     db.query('SELECT * FROM users', (err, results) => {
         if(err) {
             console.log(`Erro ao recuperar usuários: ${err}`);
@@ -34,9 +34,9 @@ UsersRouter.get('/', (_req, res) => {
     })
 });
 
-UsersRouter.get('/:id', (req, res) => {
+UsersRouter.get('/:id', (req: Request, res: Response) => {
     const { id } = req.params;
-    db.query('select * FROM users WHERE id_user = ?', [id], (err, result) => {
+    db.query('select * FROM users WHERE user_id = ?', [id], (err, result) => {
         if(err) {
             console.log(`Erro ao recuperar usuário: ${err}`);
             res.status(500).json({message: `Erro ao recuperar usuário: ${err}`});
