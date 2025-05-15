@@ -9,7 +9,8 @@
     "skipLibCheck": true,
     "resolveJsonModule": true,
     "baseUrl": ".",
-    "rootDir": "./src"                    /* Skip type checking all .d.ts files. */
+    "rootDir": "./src",                    /* Skip type checking all .d.ts files. */
+    "outDir": "./dist",
   },
   "include": [
     "src/**/*"
